@@ -1,0 +1,14 @@
+"use strict";
+exports.__esModule = true;
+var Person_1 = require("./Person");
+var Profesion_1 = require("./Profesion");
+var juan = new Person_1.Person('Juan', 'esp', Profesion_1.Profesion.manager, 5);
+var menchu = new Person_1.Person('Menchu', 'esp', Profesion_1.Profesion.developer, 7);
+var diego = new Person_1.Person('Diego', 'esp', Profesion_1.Profesion.tester, 2);
+var pilar = new Person_1.Person("Pilar", "esp", Profesion_1.Profesion.manager, 9);
+console.log(pilar.equals(menchu));
+console.log(pilar.equals(pilar));
+console.log('------------------');
+console.log(diego.toString());
+console.log("------------------");
+juan.print();
