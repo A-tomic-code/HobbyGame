@@ -39,7 +39,7 @@ export class Videogame {
   //////////////////////////////////////////
 
   public print(): void {
-    console.log("-------------- VIDEOGAME --------------\n\n");
+    console.log("\n-------------- VIDEOGAME --------------\n\n");
     for (let prop in this) {
       switch (prop) {
         case "director":
@@ -67,15 +67,14 @@ export class Videogame {
   }
 
   public toString(): string {
-    let salida: string = "-------------- VIDEOGAME --------------\n\n";
+    let salida: string = "\n-------------- VIDEOGAME --------------\n\n";
 
     for (let prop in this) {
       switch (prop) {
         case "director":
-          salida += "------- DIRECTOR -------";
+          salida += "------- DIRECTOR -------\n";
           salida += this.getDirector().toString();
           salida += "------------------------\n";
-
           break;
         case "developers":
           salida += "------- DEVELOPERS -------\n";
