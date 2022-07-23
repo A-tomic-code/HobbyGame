@@ -1,1 +1,7 @@
-export enum StorageType {cartucho, tarjeta, cd, dvd, bluray }
+export enum StorageType {
+  cartucho = 'cartucho',
+  tarjeta = 'tarjeta',
+  cd = 'cd',
+  dvd = 'dvd',
+  bluray = 'bluray'
+}

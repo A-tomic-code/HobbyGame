@@ -62,7 +62,7 @@ export class Person {
         case "nationality":
         case "profesion":
         case "experienceYears":
-          salida.concat(`${prop}: ${eval("this." + prop)}\n`);
+          salida += `${prop}: ${eval("this." + prop)}\n` ;
           break;
       }
     }
