@@ -1,0 +1,1 @@
+export enum StorageType {cartucho, tarjeta, cd, dvd, bluray }

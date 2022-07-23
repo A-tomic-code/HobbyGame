@@ -38,7 +38,9 @@ export class Person {
   }
 
   public print(): void {
+    
     for (let prop in this) {
+      
       switch (prop) {
         case "name":
         case "nationality":
@@ -47,6 +49,7 @@ export class Person {
           console.log(`${prop}: ${eval("this." + prop)}`);
           break;
       }
+      
     }
   }
 
