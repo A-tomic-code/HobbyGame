@@ -1,3 +1,5 @@
+import * as fs from "fs";
+import { json } from "stream/consumers";
 import { HobbyGame } from "./HobbyGame";
 import { Person } from "./Person";
 import { Platform } from "./Platform";
@@ -65,3 +67,13 @@ console.log("-------- BY PLATFORM AND LANGUAGE -------");
 console.log(hg.getByPlatformAndLanguage(SEGA, 'en'));
 console.log("-------- TOTAL PRICE -------");
 console.log(hg.getTotalPrice());
+
+HobbyGame.writeOnJSONFile(HobbyGame.DB_NAME,hg);
+
+let hgCopia:HobbyGame = HobbyGame.getInstance(HobbyGame.DB_NAME)
+
+console.log('\n\n');
+console.log('probando STRINGIFY');
+console.log(hgCopia);
+
+

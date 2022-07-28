@@ -1,4 +1,6 @@
+import { stdin, stdout } from "process";
 import { Profesion } from "./Profesion";
+import * as rl from "readline-sync";
 
 export class Person {
   private name: string;
@@ -22,7 +24,26 @@ export class Person {
   //            METODOS DE CLASE          //
   //////////////////////////////////////////
 
-  public equals(persona: Person):boolean {
+  public static createInteractive():Person {
+    let prompt = " >> ";
+    
+    let tmp: Person;
+  
+    let dir_name = rl.question("Name" + prompt);
+    let dir_nationality = rl.question("Nationality" + prompt);
+    let dir_exp = rl.question("Experience years" + prompt);
+
+    tmp = new Person(
+      dir_name,
+      dir_nationality,
+      Profesion.director,
+      dir_exp
+    );
+
+    return tmp
+  }
+
+  public equals(persona: Person): boolean {
     let equals = false;
 
     if (
@@ -38,9 +59,7 @@ export class Person {
   }
 
   public print(): void {
-    
     for (let prop in this) {
-      
       switch (prop) {
         case "name":
         case "nationality":
@@ -49,20 +68,19 @@ export class Person {
           console.log(`${prop}: ${eval("this." + prop)}`);
           break;
       }
-      
     }
   }
 
   public toString(): string {
-    let salida:string = '';
-    
+    let salida: string = "";
+
     for (let prop in this) {
       switch (prop) {
         case "name":
         case "nationality":
         case "profesion":
         case "experienceYears":
-          salida += `${prop}: ${eval("this." + prop)}\n` ;
+          salida += `${prop}: ${eval("this." + prop)}\n`;
           break;
       }
     }

@@ -1,5 +1,6 @@
 import { Person } from "./Person";
 import { Platform } from "./Platform";
+import * as rl from "readline-sync";
 
 export class Videogame {
   private director: Person;
@@ -37,6 +38,79 @@ export class Videogame {
   //////////////////////////////////////////
   //            METODOS DE CLASE          //
   //////////////////////////////////////////
+
+  public static createInteractive(): Videogame {
+    let developers: Person[] = [];
+    let director: Person;
+    let title: string;
+    let releaseYear: number;
+    let nacionality: string;
+    let languages: string[] = [];
+    let platforms: Platform[] = [];
+    let price: number = 0;
+    let score: number = 0;
+
+    let prompt = " --> ";
+
+    let game: Videogame;
+
+    let developers_num = rl.question(
+      "How many develpers has the Videgame ?" + prompt
+    );
+
+    for (let i = 0; i < developers_num; i++) {
+      console.log("\ndeveloper " + (i + 1));
+      console.log("--------------------\n");
+
+      let tmp: Person = Person.createInteractive();
+      developers.push(tmp);
+    }
+
+    console.log("");
+    console.log("\nLet`s Introduce the data of the director");
+    console.log("--------------------\n");
+
+    director = Person.createInteractive();
+
+    console.log("\n------game's data--------");
+
+    title = rl.question("Title" + prompt);
+    releaseYear = rl.question("Realease Year" + prompt);
+    nacionality = rl.question("Nacionality" + prompt);
+
+    let languages_str = rl.question("languages (separate by comma)" + prompt);
+    languages = languages_str.split(",");
+
+    // AQUI ESTA PEGADITO A ARRIBA
+    let platforms_num = rl.question(
+      "For how many platforms has the Videgame available ?" + prompt
+    );
+
+    for (let i = 0; i < platforms_num; i++) {
+      console.log("\nplatform " + (i + 1));
+      console.log("--------------------\n");
+
+      let tmp: Platform = Platform.createInteractive();
+      platforms.push(tmp);
+    }
+
+    price = rl.question("Game price" + prompt);
+    score = rl.question("Game score" + prompt);
+
+    game = new Videogame(
+      developers,
+      director,
+      title,
+      releaseYear,
+      nacionality,
+      languages,
+      platforms,
+      price,
+      score
+    );
+
+    return game
+  }
 
   public print(): void {
     console.log("\n-------------- VIDEOGAME --------------\n\n");

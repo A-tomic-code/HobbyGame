@@ -1,8 +1,11 @@
+import { readFileSync, writeFileSync } from "fs";
 import { Person } from "./Person";
 import { Platform } from "./Platform";
 import { Videogame } from "./Videogame";
 
 export class HobbyGame {
+  public static DB_NAME = 'hobbyGameDDBB.json';
+  
   private games: Videogame[];
 
   constructor(games: Videogame[]) {
@@ -72,6 +75,15 @@ export class HobbyGame {
     }
 
     return total;
+  }
+
+  public static writeOnJSONFile(fileName: string, obj:HobbyGame) {
+    writeFileSync(fileName, JSON.stringify(obj));
+    console.log("Registro añadido ✓");
+  }
+
+  public static getInstance(fileName: string): HobbyGame {
+    return new HobbyGame(JSON.parse(readFileSync(fileName).toString()).games);
   }
 
   //////////////////////////////////////////

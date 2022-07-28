@@ -1,4 +1,5 @@
 import { StorageType } from "./StorageType";
+import * as rl from "readline-sync";
 
 export class Platform {
   private name: string;
@@ -38,6 +39,64 @@ export class Platform {
   //////////////////////////////////////////
   //            METODOS DE CLASE          //
   //////////////////////////////////////////
+
+  public static createInteractive(): Platform {
+    let prompt = " >> ";
+
+    let name = rl.question("Platform name" + prompt);;
+    let releaseYear = Number(rl.question("Release Year" + prompt));
+    let company = rl.question("Company" + prompt);
+    let nBs = Number(rl.question("Number of Bits" + prompt));
+    let generation = rl.question("Generation" + prompt);
+    let hasHD = rl.question("Has HD? (Y/n)" + prompt);
+    let hdSize;
+
+    if (hasHD.toLowerCase() != "n") {
+      hdSize = rl.question("HD Size" + prompt);
+    } else {
+      hdSize = 0;
+    }
+
+    let hasInternetConnection = rl.question("Has internet connection (Y/n)" + prompt);
+    let color = rl.question("Color" + prompt);
+    let storageDevice: StorageType = StorageType.cartucho;
+    let storageDevice_str: string = rl.question(
+      "Storage Device ([C]artucho, [T]arjeta, C[D], D[V]D, [B]lu-Ray" + prompt);
+    
+      switch (storageDevice_str.toLocaleLowerCase()) {
+      case "c":
+        storageDevice = StorageType.cartucho;
+        break;
+      case "t":
+        storageDevice = StorageType.tarjeta;
+        break;
+      case "d":
+        storageDevice = StorageType.cd;
+        break;
+      case "v":
+        storageDevice = StorageType.dvd;
+        break;
+      case "b":
+        storageDevice = StorageType.bluray;
+        break;
+      default:
+        console.log("Choose a valid option");
+        this.createInteractive();
+    }
+
+    return new Platform(
+      name,
+      releaseYear,
+      company,
+      nBs,
+      generation,
+      hasHD,
+      hdSize,
+      hasInternetConnection,
+      storageDevice,
+      color
+    );
+  }
 
   public equals(platform: Platform): boolean {
     let equals = false;
